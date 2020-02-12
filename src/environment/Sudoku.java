@@ -1,6 +1,8 @@
 package environment;
 
-public class Sudoku {
+import com.github.ffcfalcos.smartagent.environment.Environment;
+
+public class Sudoku implements Environment {
 
     private int[][] data;
 
@@ -14,5 +16,20 @@ public class Sudoku {
 
     public int getSize() {
         return data.length;
+    }
+
+    @Override
+    public void updateView() {
+
+    }
+
+    @Override
+    public boolean equalsTo(Environment environment) {
+        return false;
+    }
+
+    @Override
+    public Environment copy() {
+        return null;
     }
 }
