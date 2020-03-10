@@ -1,6 +1,6 @@
 package logic.algorithm;
 
-import environment.Cell;
+import logic.variable.Cell;
 import environment.Sudoku;
 import logic.constraint.Constraint;
 import logic.variable.Variable;
@@ -30,6 +30,16 @@ public class SudokuAC3Algorithm extends AC3Algorithm {
         if(updated) {
             View.getInstance().update();
         }
+    }
+
+    @Override
+    protected boolean solutionComplete(List<Variable> variables) {
+        for(Variable variable : variables) {
+            if(variable.getPossibilities().size() > 1) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

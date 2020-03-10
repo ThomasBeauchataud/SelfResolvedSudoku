@@ -1,6 +1,6 @@
 package logic.algorithm;
 
-import environment.Cell;
+import logic.variable.Cell;
 import logic.constraint.Constraint;
 import logic.variable.Variable;
 

@@ -1,6 +1,6 @@
 package logic;
 
-import environment.Cell;
+import logic.variable.Cell;
 import environment.Sudoku;
 import logic.constraint.ColumnConstraint;
 import logic.constraint.Constraint;

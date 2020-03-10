@@ -1,6 +1,4 @@
-package environment;
-
-import logic.variable.Variable;
+package logic.variable;
 
 import java.util.ArrayList;
 import java.util.List;

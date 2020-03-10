@@ -24,7 +24,7 @@ public abstract class BackTrackingAlgorithm implements Algorithm {
 
     private boolean solve(Variable variable) {
         for (Object possibility : variable.getPossibilities()) {
-            if (isValidPossibility(variable, possibility)) {
+            if (isValidPossibility(variable, possibility) || variable.getPossibilities().size() == 1) {
                 variable.setUniquePossibility(possibility);
                 for(Variable nextVariable : getNextVariables(variable)) {
                     if(!solve(nextVariable)) {

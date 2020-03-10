@@ -74,6 +74,8 @@ public class View {
         Pane topPane = new Pane();
         Button importButton = new Button("Import Sudoku");
         Button resolveButton = new Button("Resolve");
+        Button generateButton = new Button("Generate");
+        generateButton.setOnAction(event -> loadSudoku(SudokuFactory.getInstance().generateSudoku()));
         importButton.setOnAction(event -> loadSudoku(SudokuFactory.getInstance().createSudoku(new FileChooser().showOpenDialog(primaryStage))));
         resolveButton.setOnAction(event -> {
             if(sudoku != null) {
@@ -82,8 +84,10 @@ public class View {
             }
         });
         resolveButton.setTranslateX(120);
+        generateButton.setTranslateX(192);
         topPane.getChildren().add(importButton);
         topPane.getChildren().add(resolveButton);
+        topPane.getChildren().add(generateButton);
         root.setTop(topPane);
     }
 
