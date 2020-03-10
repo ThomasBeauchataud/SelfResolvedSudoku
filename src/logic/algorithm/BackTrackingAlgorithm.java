@@ -20,6 +20,7 @@ public abstract class BackTrackingAlgorithm implements Algorithm {
     @Override
     public void run() {
         solve(this.variables.get(0));
+        System.out.println();
     }
 
     private boolean solve(Variable variable) {
@@ -34,7 +35,6 @@ public abstract class BackTrackingAlgorithm implements Algorithm {
                 return true;
             }
         }
-
         return false;
     }
 

@@ -5,6 +5,8 @@ import logic.algorithm.Algorithm;
 import logic.algorithm.SudokuAC3Algorithm;
 import logic.constraint.*;
 import logic.variable.Variable;
+import logic.algorithm.SudokuBackTrackingAlgorithm;
+
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class SudokuResolver {
     public void resolve(Sudoku sudoku) {
         List<Constraint> constraints = sudokuAlgorithmsFactory.createConstraints(sudoku);
         List<Variable> variables = sudokuAlgorithmsFactory.createVariables(sudoku);
-        Algorithm algorithm = new SudokuAC3Algorithm(variables, constraints, sudoku);
+        Algorithm algorithm = new SudokuBackTrackingAlgorithm(variables, constraints);
         algorithm.run();
     }
 
