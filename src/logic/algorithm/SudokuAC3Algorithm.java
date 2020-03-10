@@ -18,7 +18,7 @@ public class SudokuAC3Algorithm extends AC3Algorithm {
     }
 
     @Override
-    protected void update() {
+    public void update() {
         boolean updated = false;
         for(Variable variable : this.variables) {
             Cell cell = (Cell)variable;

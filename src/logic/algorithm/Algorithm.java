@@ -4,4 +4,6 @@ public interface Algorithm {
 
     void run();
 
+    void update();
+
 }

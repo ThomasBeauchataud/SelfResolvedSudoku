@@ -34,8 +34,6 @@ public abstract class AC3Algorithm implements Algorithm {
         }
     }
 
-    protected abstract void update();
-
     protected abstract boolean solutionComplete(List<Variable> variables);
 
     private List<Constraint> getAffectedConstraints(List<Variable> variables, Constraint lastConstraint) {

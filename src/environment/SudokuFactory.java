@@ -28,7 +28,7 @@ public class SudokuFactory {
     }
 
     public Sudoku generateSudoku() {
-        return sudokuList.get(new Random().nextInt(sudokuList.size() + 1) - 1);
+        return sudokuList.get(new Random().nextInt(sudokuList.size() - 1 + 1));
     }
 
     private Sudoku createSudokuFromCsv(File file) {

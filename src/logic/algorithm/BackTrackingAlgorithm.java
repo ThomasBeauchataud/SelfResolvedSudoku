@@ -19,8 +19,11 @@ public abstract class BackTrackingAlgorithm implements Algorithm {
 
     @Override
     public void run() {
-        solve(this.variables.get(0));
-        System.out.println();
+        if(solve(this.variables.get(0))) {
+            update();
+        } else {
+            System.err.println("Impossible to resolve the sudoku with back tracking algorithm");
+        }
     }
 
     private boolean solve(Variable variable) {

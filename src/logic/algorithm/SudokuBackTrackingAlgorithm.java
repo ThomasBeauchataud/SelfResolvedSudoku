@@ -1,16 +1,21 @@
 package logic.algorithm;
 
+import environment.Sudoku;
 import logic.variable.Cell;
 import logic.constraint.Constraint;
 import logic.variable.Variable;
+import view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SudokuBackTrackingAlgorithm extends BackTrackingAlgorithm {
 
-    public SudokuBackTrackingAlgorithm(List<Variable> variables, List<Constraint> constraints) {
+    private Sudoku sudoku;
+
+    public SudokuBackTrackingAlgorithm(List<Variable> variables, List<Constraint> constraints, Sudoku sudoku) {
         super(variables, constraints);
+        this.sudoku = sudoku;
     }
 
     @Override
@@ -25,6 +30,21 @@ public class SudokuBackTrackingAlgorithm extends BackTrackingAlgorithm {
             }
         }
         return variables;
+    }
+
+    @Override
+    public void update() {
+        boolean updated = false;
+        for(Variable variable : this.variables) {
+            Cell cell = (Cell)variable;
+            if(sudoku.getData()[cell.getRow()][cell.getColumn()] == 0 && cell.getPossibilities().size() == 1) {
+                sudoku.getData()[cell.getRow()][cell.getColumn()] = (int)cell.getLastPossibility();
+                updated = true;
+            }
+        }
+        if(updated) {
+            View.getInstance().update();
+        }
     }
 
 }
