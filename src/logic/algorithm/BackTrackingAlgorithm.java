@@ -1,6 +1,7 @@
 package logic.algorithm;
 
 import logic.constraint.Constraint;
+import logic.variable.Cell;
 import logic.variable.Variable;
 
 import java.util.ArrayList;
@@ -27,15 +28,19 @@ public abstract class BackTrackingAlgorithm implements Algorithm {
     }
 
     private boolean solve(Variable variable) {
+        List<Variable> assignments = getNextVariables(variable);
         for (Object possibility : variable.getPossibilities()) {
             if (isValidPossibility(variable, possibility) || variable.getPossibilities().size() == 1) {
                 variable.setUniquePossibility(possibility);
+                boolean result = true;
                 for(Variable nextVariable : getNextVariables(variable)) {
                     if(!solve(nextVariable)) {
-                        return false;
+                        result = false;
                     }
                 }
-                return true;
+                if(result) {
+                    return true;
+                }
             }
         }
         return false;
@@ -43,8 +48,10 @@ public abstract class BackTrackingAlgorithm implements Algorithm {
 
     private boolean isValidPossibility(Variable variable, Object possibility) {
         for(Constraint constraint : getAssociatedConstraints(variable)) {
-            if(!constraint.valid(variable, this.variables)) {
-                return false;
+            Cell cell = (Cell)variable;
+            Cell variableTemp = new Cell((Integer) possibility, cell.getRow(), cell.getColumn());
+            if(!constraint.valid(variableTemp, this.variables)) {
+                    return false;
             }
         }
         return true;

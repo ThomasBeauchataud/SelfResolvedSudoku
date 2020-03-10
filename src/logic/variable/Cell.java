@@ -9,18 +9,29 @@ public class Cell implements Variable {
     private List<Integer> possibilities;
     private int row;
     private int column;
+    private boolean locked;
 
     public Cell(int possibility, int row, int column) {
         this.possibilities = new ArrayList<>();
         this.possibilities.add(possibility);
         this.row = row;
         this.column = column;
+        this.locked = false;
+    }
+
+    public Cell(int possibility, int row, int column, boolean locked) {
+        this.possibilities = new ArrayList<>();
+        this.possibilities.add(possibility);
+        this.row = row;
+        this.column = column;
+        this.locked = true;
     }
 
     public Cell(List<Integer> possibilities, int row, int column) {
         this.possibilities = possibilities;
         this.row = row;
         this.column = column;
+        this.locked = false;
     }
 
     public int getRow() {
@@ -33,6 +44,14 @@ public class Cell implements Variable {
 
     public int getSquare() {
         return (row / 3 ) * 3 + (column / 3);
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 
     @Override

@@ -39,9 +39,10 @@ public class SquareConstraint extends AbstractConstraint {
     @Override
     public boolean valid(Variable variable, List<Variable> variables) {
         for(Variable testVariable : variables) {
+            Cell cell2 = (Cell)variable;
             Cell cell = (Cell)testVariable;
-            if(cell.getSquare() == this.id && cell.getPossibilities().size() == 1
-                    && variable.getLastPossibility() == cell.getLastPossibility()) {
+            if(cell.getSquare() == this.id && !cell.isLocked() && cell.getColumn() != cell2.getColumn() && cell.getRow() != cell2.getRow()
+                    && variable.getLastPossibility() == cell.getLastPossibility() && cell.getPossibilities().size() == 1) {
                 return false;
             }
         }

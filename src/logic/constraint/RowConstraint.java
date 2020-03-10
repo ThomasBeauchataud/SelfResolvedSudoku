@@ -40,8 +40,9 @@ public class RowConstraint extends AbstractConstraint {
     public boolean valid(Variable variable, List<Variable> variables) {
         for(Variable testVariable : variables) {
             Cell cell = (Cell)testVariable;
-            if(cell.getRow() == this.id && cell.getPossibilities().size() == 1
-                    && variable.getLastPossibility() == cell.getLastPossibility()) {
+            Cell cell2 = (Cell)variable;
+            if(cell.getRow() == this.id && !cell.isLocked() && cell.getColumn() != cell2.getColumn() && cell.getRow() != cell2.getRow()
+                    && variable.getLastPossibility() == cell.getLastPossibility() && cell.getPossibilities().size() == 1) {
                 return false;
             }
         }

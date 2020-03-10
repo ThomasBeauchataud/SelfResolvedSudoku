@@ -32,7 +32,7 @@ public class SudokuAlgorithmFactory {
                 if(sudoku.getData()[k][i] == 0) {
                     variables.add(new Cell(getPossibilities(sudoku), k, i));
                 } else {
-                    variables.add(new Cell(sudoku.getData()[k][i], k, i));
+                    variables.add(new Cell(sudoku.getData()[k][i], k, i, true));
                 }
             }
         }
