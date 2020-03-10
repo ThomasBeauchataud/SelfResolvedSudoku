@@ -1,6 +1,6 @@
 package logic.constraint;
 
-import environment.Cell;
+import logic.variable.Cell;
 import logic.variable.Variable;
 
 import java.util.ArrayList;

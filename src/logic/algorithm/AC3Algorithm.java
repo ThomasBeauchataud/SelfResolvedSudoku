@@ -23,8 +23,9 @@ public abstract class AC3Algorithm implements Algorithm {
     @Override
     public void run() {
         agenda.addAll(constraints);
-        while(agenda.size() > 0) {
+        while(agenda.size() > 0 && !solutionComplete(variables)) {
             Constraint constraint = agenda.poll();
+            assert constraint != null;
             List<Variable> modifiedVariables = constraint.apply(variables);
             if(modifiedVariables.size() > 0) {
                 agenda.addAll(getAffectedConstraints(modifiedVariables, constraint));
@@ -34,6 +35,8 @@ public abstract class AC3Algorithm implements Algorithm {
     }
 
     protected abstract void update();
+
+    protected abstract boolean solutionComplete(List<Variable> variables);
 
     private List<Constraint> getAffectedConstraints(List<Variable> variables, Constraint lastConstraint) {
         List<Constraint> constraints = new ArrayList<>();
