@@ -6,6 +6,7 @@ import logic.variable.Variable;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("Duplicates")
 public class ColumnConstraint extends AbstractConstraint {
 
     public ColumnConstraint(int columnId) {

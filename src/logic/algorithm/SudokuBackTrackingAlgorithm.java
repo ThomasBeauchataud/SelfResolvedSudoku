@@ -9,6 +9,10 @@ import view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * BackTracking Algorithm implementation for the Sudoku problem
+ */
+@SuppressWarnings("Duplicates")
 public class SudokuBackTrackingAlgorithm extends BackTrackingAlgorithm {
 
     private Sudoku sudoku;
@@ -18,6 +22,11 @@ public class SudokuBackTrackingAlgorithm extends BackTrackingAlgorithm {
         this.sudoku = sudoku;
     }
 
+    /**
+     * Return next variables to solve
+     * @param variable Variable
+     * @return Variable[]
+     */
     @Override
     protected List<Variable> getNextVariables(Variable variable) {
         List<Variable> variables = new ArrayList<>();
@@ -32,6 +41,9 @@ public class SudokuBackTrackingAlgorithm extends BackTrackingAlgorithm {
         return variables;
     }
 
+    /**
+     * Update the view
+     */
     @Override
     public void update() {
         boolean updated = false;
@@ -45,6 +57,24 @@ public class SudokuBackTrackingAlgorithm extends BackTrackingAlgorithm {
         if(updated) {
             View.getInstance().update();
         }
+    }
+
+    /**
+     * Return true if a possibility is valid for a variable
+     * @param variable Variable
+     * @param possibility Object
+     * @return boolean
+     */
+    @Override
+    protected boolean isValidPossibility(Variable variable, Object possibility) {
+        for(Constraint constraint : getAssociatedConstraints(variable)) {
+            Cell cell = (Cell)variable;
+            Cell variableTemp = new Cell((Integer) possibility, cell.getRow(), cell.getColumn());
+            if(!constraint.valid(variableTemp, this.variables)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

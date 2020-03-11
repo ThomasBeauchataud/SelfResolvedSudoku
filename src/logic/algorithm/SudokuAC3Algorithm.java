@@ -8,6 +8,10 @@ import view.View;
 
 import java.util.List;
 
+/**
+ * AC3 Algorithm implementation for the Sudoku problem
+ */
+@SuppressWarnings("Duplicates")
 public class SudokuAC3Algorithm extends AC3Algorithm {
 
     private Sudoku sudoku;
@@ -17,6 +21,9 @@ public class SudokuAC3Algorithm extends AC3Algorithm {
         this.sudoku = sudoku;
     }
 
+    /**
+     * Update the view
+     */
     @Override
     public void update() {
         boolean updated = false;
@@ -32,6 +39,11 @@ public class SudokuAC3Algorithm extends AC3Algorithm {
         }
     }
 
+    /**
+     * Return true if the solution is complete
+     * @param variables Variable[]
+     * @return boolean
+     */
     @Override
     protected boolean solutionComplete(List<Variable> variables) {
         for(Variable variable : variables) {

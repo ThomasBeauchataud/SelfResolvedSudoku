@@ -11,6 +11,9 @@ import logic.variable.Variable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Factory which create Sudoku constraints and variables for algorithms
+ */
 public class SudokuAlgorithmFactory {
 
     private static SudokuAlgorithmFactory instance;

@@ -1,12 +1,14 @@
 package logic.algorithm;
 
 import logic.constraint.Constraint;
-import logic.variable.Cell;
 import logic.variable.Variable;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Abstract BackTracking Algorithm
+ */
 @SuppressWarnings("unused")
 public abstract class BackTrackingAlgorithm implements Algorithm {
 
@@ -18,6 +20,9 @@ public abstract class BackTrackingAlgorithm implements Algorithm {
         this.constraints = constraints;
     }
 
+    /**
+     * Run the algorithm
+     */
     @Override
     public void run() {
         if(solve(this.variables.get(0))) {
@@ -27,12 +32,21 @@ public abstract class BackTrackingAlgorithm implements Algorithm {
         }
     }
 
+    /**
+     * Recursive loop of the BackTracking Algorithm
+     * @param variable Variable
+     * @return boolean
+     */
     private boolean solve(Variable variable) {
         List<Variable> assignments = getNextVariables(variable);
+        //Foreach variable possibility
         for (Object possibility : variable.getPossibilities()) {
+            //We check the validity of the possibility
             if (isValidPossibility(variable, possibility) || variable.getPossibilities().size() == 1) {
+                //We assign the possibility to the variable
                 variable.setUniquePossibility(possibility);
                 boolean result = true;
+                // We check if affected variables can solve the problem with this possibility choice
                 for(Variable nextVariable : getNextVariables(variable)) {
                     if(!solve(nextVariable)) {
                         result = false;
@@ -46,18 +60,20 @@ public abstract class BackTrackingAlgorithm implements Algorithm {
         return false;
     }
 
-    private boolean isValidPossibility(Variable variable, Object possibility) {
-        for(Constraint constraint : getAssociatedConstraints(variable)) {
-            Cell cell = (Cell)variable;
-            Cell variableTemp = new Cell((Integer) possibility, cell.getRow(), cell.getColumn());
-            if(!constraint.valid(variableTemp, this.variables)) {
-                    return false;
-            }
-        }
-        return true;
-    }
+    /**
+     * Return true if a possibility is valid for a variable
+     * @param variable Variable
+     * @param possibility Object
+     * @return boolean
+     */
+    protected abstract boolean isValidPossibility(Variable variable, Object possibility);
 
-    private List<Constraint> getAssociatedConstraints(Variable variable) {
+    /**
+     * Return the constraint list associated to a variable
+     * @param variable Variable
+     * @return Constraint[]
+     */
+    protected List<Constraint> getAssociatedConstraints(Variable variable) {
         List<Constraint> constraints = new ArrayList<>();
         for(Constraint constraint : this.constraints) {
             if(constraint.hasOnSubject(variable)) {
@@ -67,6 +83,11 @@ public abstract class BackTrackingAlgorithm implements Algorithm {
         return constraints;
     }
 
+    /**
+     * Return next variables to solve
+     * @param variable Variable
+     * @return Variable[]
+     */
     protected abstract List<Variable> getNextVariables(Variable variable);
 
 }

@@ -12,6 +12,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import logic.SudokuResolver;
 
+/**
+ * The Sudoku view
+ */
 public class View {
 
     private static View instance;

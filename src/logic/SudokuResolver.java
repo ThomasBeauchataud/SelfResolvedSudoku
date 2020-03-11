@@ -10,6 +10,9 @@ import logic.variable.Variable;
 
 import java.util.List;
 
+/**
+ * The object to select the resolver algorithm to use
+ */
 public class SudokuResolver {
 
     private SudokuAlgorithmFactory sudokuAlgorithmsFactory;

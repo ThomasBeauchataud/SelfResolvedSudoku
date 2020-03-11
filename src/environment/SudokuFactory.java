@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * Create Sudoku from an import CSV file or from resources
+ */
 @SuppressWarnings("Duplicates")
 public class SudokuFactory {
 
@@ -20,6 +23,11 @@ public class SudokuFactory {
         importSudoku();
     }
 
+    /**
+     * Create a Sudoku from a CSV file
+     * @param file File
+     * @return Sudoku
+     */
     public Sudoku createSudoku(File file) {
         if (file.getName().contains(".csv")) {
             return createSudokuFromCsv(file);
@@ -27,10 +35,19 @@ public class SudokuFactory {
         return null;
     }
 
+    /**
+     * Return a Sudoku from the list previously generated
+     * @return Sudoku
+     */
     public Sudoku generateSudoku() {
         return sudokuList.get(new Random().nextInt(sudokuList.size() - 1 + 1));
     }
 
+    /**
+     * Parse a CSV to create a Sudoku
+     * @param file FIle
+     * @return Sudoku
+     */
     private Sudoku createSudokuFromCsv(File file) {
         try {
             BufferedReader csvReader = new BufferedReader(new FileReader(file));

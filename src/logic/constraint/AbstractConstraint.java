@@ -5,6 +5,9 @@ import logic.variable.Variable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Abstract constraint which filter duplicates returns variables
+ */
 public abstract class AbstractConstraint implements Constraint {
 
     protected int id;
@@ -22,6 +25,9 @@ public abstract class AbstractConstraint implements Constraint {
             return constraint.getClass() == this.getClass() && ((AbstractConstraint)constraint).getId() == this.id;
     }
 
+    /**
+     * Filter duplicates returns variables
+     */
     protected List<Variable> filterVariables(List<Variable> variables) {
         List<Variable> modifiedVariables = new ArrayList<>();
         for(Variable variable : variables) {
